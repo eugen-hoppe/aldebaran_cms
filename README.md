@@ -1,2 +1,2 @@
 # aldebaran_cms
-Databaseless CMS structered 
+Databaseless CMS structured and interpreted by Markdown-files in folders
