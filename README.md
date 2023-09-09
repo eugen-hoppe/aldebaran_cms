@@ -4,8 +4,8 @@ Databaseless CMS structured and interpreted by Markdown-files in folders
 ## Development progress
 
 ### TODO
-- 404 Not Found favicon.ico
 - file lookup (tree traversal)
-- htmx
-- cache
+- cache static files
 - 404, 500, ... error pages handling
+- interpreting content/admin/settings.md
+- htmx
