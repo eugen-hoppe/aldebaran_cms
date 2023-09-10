@@ -9,6 +9,7 @@ from cms.dependencies import options
 from cms.engine import api, content
 from cms.models import Options
 from settings import config
+from utils import dirs
 
 cms = FastAPI()
 
@@ -39,16 +40,24 @@ async def html(request: Request, opt: Annotated[Options, Depends(options)]):
         return RedirectResponse(f"{path[:-6]}")
     if path.endswith("/index.md"):  # obsidian compatibility
         return RedirectResponse(f"{path[:-9]}")
-    template = "base.html"
+    location = path.split("/")
     html = await content(
         opt=opt,
-        location=path.split("/")
+        location=location,
+    )
+    location[0] = "content"
+    menu_path = "/".join(location).removesuffix("/")
+    menu = dirs.entrypoints(
+        menu_path, exclude=["admin"],
+        entrypoint="index.md", 
+        remove_prefix="content"
     )
     payload = {
         "request": request,
         "title": config.CMS.WEBSITE_NAME.value,
         "body": html.body,
+        "menu": [(link, link.split("/")[-1]) for link in menu if link]
     }
-    return templates.TemplateResponse(template, payload)
+    return templates.TemplateResponse("base.html", payload)
 
 

@@ -3,8 +3,7 @@
 ## Welcome to Aldebaran CMS
 
 This is a test page for Aldebaran CMS.
-[documentation](/documentation/index)
-[index](documentation/links/index.md)
+
 
 ## Examples
 
