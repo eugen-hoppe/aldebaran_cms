@@ -14,3 +14,7 @@ class CMS(str, Enum):
     @staticmethod
     def status_path(status: int = 404):
         return f"{CMS.admin_path()}/status/{status}.md"
+    
+    @staticmethod
+    def web(path: str = ""):
+        return f"{CMS.ROOT.value}/web" + path
