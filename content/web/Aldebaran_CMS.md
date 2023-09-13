@@ -3,5 +3,3 @@
 ###  What is Aldebaran CMS?
 
 ...
-
-
