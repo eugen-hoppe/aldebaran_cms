@@ -18,3 +18,13 @@ class CMS(str, Enum):
     @staticmethod
     def web(path: str = ""):
         return f"{CMS.ROOT.value}/web" + path
+
+
+STATIC_ICONS = [
+    "site.webmanifest",
+    "favicon-16x16.png",
+    "favicon-32x32.png",
+    "apple-touch-icon.png",
+    "android_chrome-192x192.png",
+    "android_chrome-512x512.png"
+]

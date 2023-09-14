@@ -25,9 +25,16 @@ templates = Jinja2Templates(directory="cms/templates")
 async def redirect(path: str):
     return RedirectResponse(f"/{path}")
 
+
 @cms.get("/favicon.ico")
-async def favicon():
-    return FileResponse("cms/static/favicon.ico")
+async def favicon(fav: str):
+    return FileResponse(f"cms/static/media/favicon/favicon{fav}")
+
+
+@cms.get("/icon/{icon}")
+async def favicon(icon: str):
+    if icon in config.STATIC_ICONS:
+        return FileResponse(f"cms/static/media/icon/{icon}")
 
 
 @cms.get("/{path:path}", response_class=HTMLResponse)
