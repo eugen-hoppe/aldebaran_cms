@@ -99,13 +99,14 @@ async def html(request: Request, opt: Annotated[Options, Depends(options)]):
         if nav_type == "previous":
             crumbs.append((path, "#" + nav_name.lower()))
         elif nav_type == "actual":
+            html.title = nav_name
             menus.append((path, "<b>@" + nav_name.lower() + "</b>"))
         elif nav_type == "next":
             menus.append((path, "[ " + nav_name + " ]"))
 
     payload = {
         "request": request,
-        "title": config.CMS.WEBSITE_NAME.value,
+        "title": html.title,
         "body": html.body,
         "crumbs": crumbs,
         "menu": menus
