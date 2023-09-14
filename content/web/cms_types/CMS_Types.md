@@ -1,0 +1,1 @@
+A "database-less CMS" or also known as a "flat-file CMS" is a content management system that does not use a database to store content. Instead, all data is stored directly in files and folders, often in the form of Markdown or YAML files.
