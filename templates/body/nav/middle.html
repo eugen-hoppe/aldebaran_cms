@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand">
+    <div class="navbar-nav">
+        {% for nav_1_path, nav_1_name in nav_1 %}
+            <a class="nav-item nav-link" hx-get="{{ nav_1_path }}" hx-target="closest body" hx-swap="innerHTML" hx-push-url="true">
+                {{ nav_1_name | safe }} /
+            </a>
+        {% endfor %}
+        {% for nav_2_path, nav_2_name in nav_2 %}
+            <a class="nav-item nav-link" hx-get="{{ nav_2_path }}" hx-target="closest body" hx-swap="innerHTML" hx-push-url="true" style="margin-top: 5%;">
+                #{{ nav_2_name | safe }}
+            </a>
+        {% endfor %}
+    </div>
+</nav>

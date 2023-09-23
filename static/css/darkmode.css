@@ -1,0 +1,13 @@
+body {
+  background-color: #3b3b3b;
+  color: #ffffff;
+
+}
+
+body.dark-mode .nav-item.nav-link {
+    color: #ffffff;
+}
+
+body.link {
+  color: #ffffff;
+}

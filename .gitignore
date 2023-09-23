@@ -1,6 +1,9 @@
-# Added by EH
+# added
+.obsidian/
+static/web/*
+!Home.md
+!static/web/Xtnd
 
-.obsidian
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

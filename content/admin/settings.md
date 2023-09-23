@@ -1,5 +1,0 @@
-```json
-{
-    "website": "Aldebaran CMS"
-}
-```

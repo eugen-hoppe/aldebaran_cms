@@ -1,0 +1,10 @@
+<div class="row h-10">
+    <div class="col-10">
+        <h1 class="h4">{{ title | safe }}</h1>
+    </div>
+    <div class="col-2">
+        {% if page_is_root == False %}
+            <a class="nav-item nav-link text-sm-end h6" href="./">..</a>
+        {% endif %}
+    </div>  
+</div>
