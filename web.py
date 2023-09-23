@@ -39,7 +39,7 @@ def cached_static(
 
 @app.get("{path:path}.{extension}", response_class=FileResponse | RedirectResponse)
 async def dot(path: str, extension: str):
-    if extension not in ("png", "jpg", "ico", "md", "css", "js", "manifest"):
+    if extension not in ("png", "jpg", "ico", "md", "css", "js", "webmanifest"):
         raise HTTPException(status_code=400, detail="Unsupported media type")
     static_meta = cached_static(path + "." + extension, folders=["/icon", "/css", "/js"])
     if extension == "md":
