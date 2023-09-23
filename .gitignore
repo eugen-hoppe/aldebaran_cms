@@ -3,6 +3,8 @@
 static/web/*
 !Home.md
 !static/web/Xtnd
+.report/
+overview.py
 
 
 # Byte-compiled / optimized / DLL files
