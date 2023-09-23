@@ -1,10 +1,9 @@
-from functools import lru_cache
-
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+from apps.cache.static import cached_static
 from apps.md.dir import md_tree
 from apps.md.html import from_md
 from models import Data
@@ -15,26 +14,6 @@ from settings.status import API_RESPONSES
 app = FastAPI(responses=API_RESPONSES)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
-
-
-def cached_static(
-        path_dot_ext: str,
-        folders: list[str] | None = None,
-        cache_items: int = 16
-        ) -> FileResponse | None:
-    @lru_cache(maxsize=cache_items)
-    def __get_static(path: str) -> FileResponse | None:
-        folder_exists = False
-        if folders is None:
-            return FileResponse("static/web/" + path_dot_ext)
-        for folder_name in folders:
-            if path.startswith(folder_name):
-                folder_exists = True
-                break
-        if not folder_exists:
-            return None
-        return FileResponse("static/" + path)
-    return __get_static(path_dot_ext)
 
 
 @app.get("{path:path}.{extension}", response_class=FileResponse | RedirectResponse)
@@ -72,13 +51,11 @@ async def html(request: Request, path: str):
     if nav_1:
         nav_1 = [(nav_1[-1][0], "")] + nav_1
 
-
     content: list[tuple[str, str]] = []
     for file_name in node["files"]:
         div_id = file_name
         md_path = path + "/" + div_id
         content.append((div_id, from_md(md_path)))
-
 
     page_title = from_md(path + f"{Template.XTND.value}/page_title")
     if page_title == "":
